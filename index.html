@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services PRO - خدمات الأعمال</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1040 50%, #0d1a3a 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            padding: 10px 28px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-badge span {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.4);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: rgba(255,255,255,0.3);
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-hint svg {
+            width: 24px;
+            height: 24px;
+            fill: rgba(255,255,255,0.3);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.1rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(96, 165, 250, 0.1);
+            color: #60a5fa;
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+
+        /* ===== CORE SERVICES (3 pillars) ===== */
+        .core-services {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #0a0e27 0%, #0f1535 100%);
+        }
+
+        .core-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .core-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .core-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #60a5fa, transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .core-card:hover::before {
+            opacity: 1;
+        }
+
+        .core-card:hover {
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-5px);
+        }
+
+        .core-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+        }
+
+        .core-card:nth-child(1) .core-icon { background: rgba(96, 165, 250, 0.15); }
+        .core-card:nth-child(2) .core-icon { background: rgba(167, 139, 250, 0.15); }
+        .core-card:nth-child(3) .core-icon { background: rgba(244, 114, 182, 0.15); }
+
+        .core-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .core-card p {
+            color: rgba(255,255,255,0.5);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ===== SERVICES GRID ===== */
+        .services-section {
+            padding: 100px 20px;
+            background: #0f1535;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            padding: 32px 28px;
+            cursor: pointer;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-color);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            background: rgba(255,255,255,0.07);
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .service-card .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+            background: var(--card-bg);
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .service-card .desc {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .card-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #25d366;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .card-action {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-action svg {
+            width: 18px;
+            height: 18px;
+            fill: #25d366;
+        }
+
+        /* ===== MANAGEMENT SERVICES ===== */
+        .mgmt-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #0f1535 0%, #0a0e27 100%);
+        }
+
+        .mgmt-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .mgmt-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 36px 30px;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .mgmt-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-3px);
+        }
+
+        .mgmt-icon {
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: var(--mgmt-bg);
+        }
+
+        .mgmt-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .mgmt-card p {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .mgmt-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #25d366;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .mgmt-card:hover .mgmt-action {
+            opacity: 1;
+        }
+
+        /* ===== EXTRA SERVICES (horizontal) ===== */
+        .extra-section {
+            padding: 80px 20px;
+            background: #0a0e27;
+        }
+
+        .extra-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .extra-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .extra-card:hover {
+            background: rgba(255,255,255,0.07);
+            transform: translateY(-3px);
+        }
+
+        .extra-card .emoji {
+            font-size: 36px;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .extra-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .extra-card p {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* ===== WHATSAPP MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: linear-gradient(135deg, #1a1f4a, #151a3e);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 40px 36px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: modalIn 0.4s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modal-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 20px;
+            background: rgba(37, 211, 102, 0.15);
+        }
+
+        .modal-box h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .modal-box .modal-desc {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .modal-whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 44px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .modal-whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+        }
+
+        .modal-whatsapp-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: #fff;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 60px 20px 30px;
+            background: #060920;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-info {
+            color: rgba(255,255,255,0.35);
+            font-size: 0.9rem;
+            line-height: 2;
+        }
+
+        .footer-info a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            margin: 24px auto;
+        }
+
+        .footer-copy {
+            color: rgba(255,255,255,0.2);
+            font-size: 0.8rem;
+        }
+
+        /* ===== FLOATING WHATSAPP ===== */
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .float-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        .float-whatsapp svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .core-grid,
+            .services-grid,
+            .mgmt-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .extra-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-box {
+                padding: 30px 24px;
+            }
+
+            .mgmt-card {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .extra-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="logo-badge">
+            <span class="logo-text">PRO</span>
+            <span>SERVICES</span>
+        </div>
+        <h1>
+            <span class="gradient">خدمات الأعمال</span>
+            <br>الاحترافية
+        </h1>
+        <p>نقدم حلولاً متكاملة لتطوير أعمالك — من التخطيط الاستراتيجي إلى التنفيذ، مع استشارات متخصصة في كافة المجالات</p>
+        <a href="https://wa.me/966547728862?text=مرحباً، أرغب بالاستفسار عن خدماتكم" class="hero-cta" target="_blank">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.597-.826-6.336-2.208l-.442-.353-3.179 1.066 1.066-3.179-.353-.442A9.96 9.96 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            اطلب الخدمة الآن
+        </a>
+    </div>
+    <div class="scroll-hint">
+        <span>تصفح الخدمات</span>
+        <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+    </div>
+</section>
+
+<!-- ===== CORE SERVICES ===== -->
+<section class="core-services">
+    <div class="section-title">
+        <span class="section-tag">ما نقدمه</span>
+        <h2>ركائز خدماتنا الأساسية</h2>
+        <p>ثلاثة محاور رئيسية نبني عليها نجاح أعمالك</p>
+    </div>
+    <div class="core-grid">
+        <div class="core-card">
+            <div class="core-icon">📋</div>
+            <h3>التخطيط الاستراتيجي</h3>
+            <p>وضع استراتيجيات وخطط تشغيلية لتحقيق أهداف العملاء وضمان النمو المستدام</p>
+        </div>
+        <div class="core-card">
+            <div class="core-icon">⚙️</div>
+            <h3>التنظيم المؤسسي</h3>
+            <p>تحسين الهيكل التنظيمي وضمان تدفق العمل بسلاسة لرفع الكفاءة التشغيلية</p>
+        </div>
+        <div class="core-card">
+            <div class="core-icon">💡</div>
+            <h3>الاستشارات المتخصصة</h3>
+            <p>تقديم استشارات متخصصة في كافة مجالات الأعمال لاتخاذ قرارات مدروسة</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MAIN SERVICES ===== -->
+<section class="services-section">
+    <div class="section-title">
+        <span class="section-tag">الحلول التجارية</span>
+        <h2>خدماتنا المتخصصة</h2>
+        <p>اختر الخدمة المناسبة وتواصل معنا مباشرة عبر واتساب</p>
+    </div>
+    <div class="services-grid">
+
+        <div class="service-card" style="--card-color: #f59e0b; --card-bg: rgba(245, 158, 11, 0.12);"
+             onclick="openModal('استثمارات', 'تقديم فرص استثمارية مربحة وتحليل جدواها — نساعدك في اكتشاف الفرص الاستثمارية الأنسب وتقييم العوائد المتوقعة لتحقيق أفضل النتائج.', '📈')">
+            <div class="card-icon">📈</div>
+            <h3>استثمارات</h3>
+            <p class="desc">تقديم فرص استثمارية مربحة وتحليل جدواها لتحقيق أفضل العوائد</p>
+            <div class="card-action">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+                اطلب عبر واتساب
+            </div>
+        </div>
+
+        <div class="service-card" style="--card-color: #8b5cf6; --card-bg: rgba(139, 92, 246, 0.12);"
+             onclick="openModal('دراسات الجدوى', 'إعداد دراسات جدوى شاملة وتقييم المشاريع — نحلل السوق والمنافسين ونقدم تقارير دقيقة تساعدك في اتخاذ قرارات استثمارية مدروسة.', '📊')">
+            <div class="card-icon">📊</div>
+            <h3>دراسات الجدوى</h3>
+            <p class="desc">إعداد دراسات جدوى شاملة وتقييم المشاريع بدقة واحترافية</p>
+            <div class="card-action">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+                اطلب عبر واتساب
+            </div>
+        </div>
+
+        <div class="service-card" style="--card-color: #10b981; --card-bg: rgba(16, 185, 129, 0.12);"
+             onclick="openModal('التمويل', 'تسهيل الوصول إلى التمويل اللازم لنمو الأعمال — نساعدك في إيجاد حلول تمويلية مناسبة وإعداد الملفات والمستندات المطلوبة للحصول على التمويل.', '💰')">
+            <div class="card-icon">💰</div>
+            <h3>التمويل</h3>
+            <p class="desc">تسهيل الوصول إلى التمويل اللازم لنمو الأعمال وتوسعها</p>
+            <div class="card-action">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+                اطلب عبر واتساب
+            </div>
+        </div>
+
+        <div class="service-card" style="--card-color: #06b6d4; --card-bg: rgba(6, 182, 212, 0.12);"
+             onclick="openModal('الإنشاء والتعمير', 'خدمات متكاملة في مجال الإنشاء والتعمير — من التخطيط والتصميم إلى الإشراف على التنفيذ وضمان الجودة في مشاريعك العقارية.', '🏗️')">
+            <div class="card-icon">🏗️</div>
+            <h3>الإنشاء والتعمير</h3>
+            <p class="desc">خدمات متكاملة في مجال الإنشاء والتعمير والمشاريع العقارية</p>
+            <div class="card-action">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+                اطلب عبر واتساب
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== MANAGEMENT SERVICES ===== -->
+<section class="mgmt-section">
+    <div class="section-title">
+        <span class="section-tag">الإدارة والتشغيل</span>
+        <h2>خدمات إدارة الأعمال</h2>
+        <p>حلول إدارية شاملة لتشغيل وتطوير مؤسستك</p>
+    </div>
+    <div class="mgmt-grid">
+
+        <div class="mgmt-card" style="--mgmt-bg: rgba(96, 165, 250, 0.15);"
+             onclick="openModal('إدارة وتشغيل', 'تحسين العمليات التشغيلية لتحقيق أعلى مستويات الكفاءة — نقدم حلولاً عملية لإدارة وتشغيل المنشآت بأعلى معايير الجودة والاحترافية.', '⚡')">
+            <div class="mgmt-icon">⚡</div>
+            <div>
+                <h3>إدارة وتشغيل</h3>
+                <p>تحسين العمليات التشغيلية لتحقيق أعلى مستويات الكفاءة والأداء</p>
+                <div class="mgmt-action">💬 تواصل عبر واتساب</div>
+            </div>
+        </div>
+
+        <div class="mgmt-card" style="--mgmt-bg: rgba(167, 139, 250, 0.15);"
+             onclick="openModal('الشؤون الإدارية والمالية', 'تحسين الأداء التنظيمي والمالي للشركات من خلال تقديم حلول استراتيجية، تحليل العمليات وإدارة الموارد بكفاءة لتحقيق الأهداف.', '📑')">
+            <div class="mgmt-icon">📑</div>
+            <div>
+                <h3>الشؤون الإدارية والمالية</h3>
+                <p>تحسين الأداء التنظيمي والمالي من خلال حلول استراتيجية وإدارة الموارد بكفاءة</p>
+                <div class="mgmt-action">💬 تواصل عبر واتساب</div>
+            </div>
+        </div>
+
+        <div class="mgmt-card" style="--mgmt-bg: rgba(244, 114, 182, 0.15);"
+             onclick="openModal('إدارة المبيعات', 'رسم خطط فعالة لرفع مستوى الدخل وتحقيق الأهداف البيعية — نساعدك في بناء فرق مبيعات قوية ووضع استراتيجيات تسويقية ناجحة.', '📊')">
+            <div class="mgmt-icon">📊</div>
+            <div>
+                <h3>إدارة المبيعات</h3>
+                <p>رسم خطط فعالة لرفع مستوى الدخل وتحقيق الأهداف البيعية</p>
+                <div class="mgmt-action">💬 تواصل عبر واتساب</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== EXTRA SERVICES ===== -->
+<section class="extra-section">
+    <div class="section-title">
+        <span class="section-tag">خدمات إضافية</span>
+        <h2>المزيد من الحلول</h2>
+    </div>
+    <div class="extra-grid">
+
+        <div class="extra-card" onclick="openModal('التطوير التجاري', 'دعم الأعمال في تطوير منتجات وخدمات جديدة وتوفير حلول مبتكرة لتحديات السوق.', '🚀')">
+            <span class="emoji">🚀</span>
+            <h4>التطوير التجاري</h4>
+            <p>حلول مبتكرة لتحديات السوق وتطوير المنتجات</p>
+        </div>
+
+        <div class="extra-card" onclick="openModal('تحليل سوات SWOT', 'تحليل نقاط القوة والضعف والفرص والتهديدات لمشروعك مع تقديم استشارات متخصصة وخطة عمل واضحة.', '🎯')">
+            <span class="emoji">🎯</span>
+            <h4>تحليل SWOT</h4>
+            <p>تحليل نقاط القوة والضعف والفرص والتهديدات</p>
+        </div>
+
+        <div class="extra-card" onclick="openModal('تقييم الأداء', 'تقييم شامل لأداء المنشأة مع تقديم توصيات عملية للتحسين ورفع الكفاءة التشغيلية.', '📋')">
+            <span class="emoji">📋</span>
+            <h4>تقييم الأداء</h4>
+            <p>تقييم شامل مع توصيات عملية للتحسين</p>
+        </div>
+
+        <div class="extra-card" onclick="openModal('المتسوق الخفي', 'تقييم تجربة العميل وتحديد فرص التحسين من خلال زيارات ميدانية سرية وتقارير مفصلة.', '🕵️')">
+            <span class="emoji">🕵️</span>
+            <h4>المتسوق الخفي</h4>
+            <p>تقييم تجربة العميل وتحديد فرص التحسين</p>
+        </div>
+
+        <div class="extra-card" onclick="openModal('رحلة العميل', 'تصميم تجربة عميل استثنائية من أول نقطة تواصل حتى ما بعد البيع لزيادة رضا العملاء وولائهم.', '🗺️')">
+            <span class="emoji">🗺️</span>
+            <h4>رحلة العميل</h4>
+            <p>تصميم تجربة عميل استثنائية</p>
+        </div>
+
+        <div class="extra-card" onclick="openModal('الهوية التجارية', 'هوية مميزة تمثل الشركة أو المنتج، تشمل الاسم والشعار والقيم وتساعد في بناء الثقة والتميز في السوق.', '🎨')">
+            <span class="emoji">🎨</span>
+            <h4>الهوية التجارية</h4>
+            <p>بناء هوية مميزة تعكس قيم شركتك</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-logo">Services PRO</div>
+    <div class="footer-info">
+        خدمات الأعمال الاحترافية<br>
+        المركز السعودي للأعمال — سجل: 5850151450<br>
+        <a href="mailto:servicespro2002@gmail.com">servicespro2002@gmail.com</a> | <a href="tel:0547728862">0547728862</a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-copy">جميع الحقوق محفوظة © 2025</div>
+</footer>
+
+<!-- ===== FLOATING WHATSAPP ===== -->
+<a href="https://wa.me/966547728862?text=مرحباً، أرغب بالاستفسار عن خدماتكم" target="_blank" class="float-whatsapp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.597-.826-6.336-2.208l-.442-.353-3.179 1.066 1.066-3.179-.353-.442A9.96 9.96 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="serviceModal" onclick="closeModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div class="modal-icon" id="modalIcon">📈</div>
+        <h3 id="modalTitle">اسم الخدمة</h3>
+        <p class="modal-desc" id="modalDesc">وصف الخدمة</p>
+        <a id="modalBtn" href="#" target="_blank" class="modal-whatsapp-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+            أرسل طلبك عبر واتساب
+        </a>
+    </div>
+</div>
+
+<script>
+    const PHONE = '966547728862';
+
+    function openModal(title, desc, icon) {
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalDesc').textContent = desc;
+        document.getElementById('modalIcon').textContent = icon;
+
+        const msg = encodeURIComponent(`مرحباً، أرغب بطلب خدمة: ${title}\n\nتفاصيل الخدمة:\n${desc}`);
+        document.getElementById('modalBtn').href = `https://wa.me/${PHONE}?text=${msg}`;
+
+        document.getElementById('serviceModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+        if (e && e.target !== e.currentTarget) return;
+        document.getElementById('serviceModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+</script>
+
+</body>
+</html>
