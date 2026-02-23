@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --doubt-dark: #0a0a0f;
+  --doubt-darker: #06060a;
+  --doubt-accent: #e74c3c;
+  --doubt-gold: #f39c12;
+  --doubt-night: #1a1a2e;
+  --doubt-text: #ecf0f1;
+  --doubt-muted: #7f8c8d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--doubt-dark);
+  color: var(--doubt-text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+  min-height: 100vh;
+}
+
+/* Phase Background Transitions */
+.phase-lobby {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+}
+
+.phase-night {
+  background: linear-gradient(135deg, #0a0a0f 0%, #16213e 50%, #0f3460 100%);
+}
+
+.phase-morning {
+  background: linear-gradient(135deg, #2d3436 0%, #636e72 50%, #b2bec3 100%);
+}
+
+.phase-discussion {
+  background: linear-gradient(135deg, #0a0a0f 0%, #2d3436 100%);
+}
+
+.phase-rebuttal {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a2a3e 100%);
+}
+
+.phase-voting {
+  background: linear-gradient(135deg, #0a0a0f 0%, #4a1a2e 100%);
+}
+
+.phase-result {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1e3a1e 100%);
+}
+
+.phase-game-over {
+  background: linear-gradient(135deg, #0a0a0f 0%, #2d1b4e 50%, #1a1a2e 100%);
+}
+
+/* Timer Ring Animation */
+@keyframes timerPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(231, 76, 60, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(231, 76, 60, 0.6); }
+}
+
+.timer-ring {
+  animation: timerPulse 2s ease-in-out infinite;
+}
+
+/* Smooth Phase Transitions */
+.phase-transition {
+  transition: background 1.5s ease-in-out;
+}
+
+/* Chat Scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
