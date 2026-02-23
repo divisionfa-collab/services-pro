@@ -20,7 +20,9 @@ import type {
   DetectiveResult,
 } from '@/types/game';
 
-const SOCKET_URL = 'http://localhost:3001';
+const SOCKET_URL = typeof window !== 'undefined'
+  ? (process.env.NODE_ENV === 'production' ? window.location.origin : 'http://localhost:3001')
+  : 'http://localhost:3001';
 type GameSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 
 interface UseSocketReturn {
